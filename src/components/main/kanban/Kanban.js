@@ -80,9 +80,9 @@ const Kanban = () => {
 
   const filterTasksBySearchTerm = (tasks) => {
     return tasks.filter((task) => {
-      const taskTitle = task.title?.toLowerCase();
-      const taskTask = task.Task?.toLowerCase();
-      const searchTermLower = searchTerm?.toLowerCase();
+      const taskTitle = task.title.toLowerCase() || "";
+      const taskTask = task.Task.toLowerCase() || "";
+      const searchTermLower = searchTerm.toLowerCase() || "";
       return (
         taskTitle.includes(searchTermLower) ||
         taskTask.includes(searchTermLower)
