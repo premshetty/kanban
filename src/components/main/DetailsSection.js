@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import inviteICon from "../../images/invite.svg";
 import editICon from "../../images/edit.svg";
 import linkICon from "../../images/link.svg";
@@ -6,12 +6,48 @@ import person1Img from "../../images/inviteuser1.png";
 import person2Img from "../../images/inviteuser2.png";
 import person3Img from "../../images/inviteuser3.png";
 import person4Img from "../../images/inviteuser4.png";
-const DetailsSection = () => {
+const DetailsSection = ({ activeProjectList, handleSaveClick }) => {
+  const [editMode, setEditMode] = useState(false);
+  const [projectName, setProjectName] = useState(activeProjectList);
+
+  const handleEditClick = () => {
+    setEditMode(true);
+  };
+  useEffect(() => {
+    setProjectName(activeProjectList);
+  }, [activeProjectList]);
+
+  const saveClick = () => {
+    handleSaveClick({ prevName: activeProjectList, newName: projectName });
+  };
+  const list = JSON.parse(localStorage.getItem("projectList"));
+
+  const handleChange = (event) => {
+    setProjectName(event.target.value);
+  };
   return (
     <div className="flex flex-row gap-3 justify-between items-center">
       <div className="flex gap-4 items-center">
-        <h1 className="text-2xl md:text-5xl  font-normal">Mobile App</h1>
-        <img className="mt-3 cursor-pointer" src={editICon} alt="" />
+        <div>
+          {editMode ? (
+            <input
+              className="text-2xl md:text-5xl font-normal"
+              type="text"
+              value={projectName}
+              onChange={handleChange}
+            />
+          ) : (
+            <h1 className="text-2xl md:text-5xl font-normal">{projectName}</h1>
+          )}
+
+          {editMode && <button onClick={saveClick}>Save</button>}
+        </div>
+        <img
+          className="mt-3 cursor-pointer"
+          src={editICon}
+          alt=""
+          onClick={handleEditClick}
+        />
         <img className="mt-3 cursor-pointer" src={linkICon} alt="" />
       </div>
 

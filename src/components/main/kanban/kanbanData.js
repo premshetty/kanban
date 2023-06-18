@@ -158,5 +158,7 @@ export const columnsFromBackend = () => {
     },
   };
   localStorage.setItem("tickets", JSON.stringify(columns));
+  localStorage.setItem("ticketTracker", JSON.stringify(columns));
+
   return columns;
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../../images/logo.svg";
 import Hideimg from "../../images/hide.svg";
 import addSquare from "../../images/addSquare.svg";
@@ -6,14 +6,8 @@ import addSquare from "../../images/addSquare.svg";
 import MenuList from "./MenuList";
 import ProjectList from "./ProjectList";
 import WriteMessage from "./WriteMessage";
-const projectlist = [
-  "Mobile App",
-  "Website Redesign",
-  "Design System",
-  "Wireframes",
-];
-const SideBar = () => {
-  const [activeProjectList, setActiveProjectList] = useState(projectlist[0]);
+
+const SideBar = ({ activeProjectList, setActiveProjectList }) => {
   const toggleSidebar = () => {
     const sidebar = document.getElementById("sidebar");
     const btn = document.getElementById("toggle-btn");
@@ -48,7 +42,6 @@ const SideBar = () => {
         <img src={addSquare} alt="" className="cursor-pointer" />
       </div>
       <ProjectList
-        projectlist={projectlist}
         activeList={activeProjectList}
         setActiveList={setActiveProjectList}
       />

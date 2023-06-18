@@ -6,12 +6,14 @@ import addIcon from "../../../images/addTicket.svg";
 import FilterSection from "../FilterSection";
 import NavBar from "../../nav/NavBar";
 import DetailsSection from "../DetailsSection";
+import ModalForm from "./CreateTicket";
 
-const Kanban = () => {
+const Kanban = ({ activeProjectList, handleSaveClick }) => {
+  const [heading, setHeading] = useState("");
   const [columns, setColumns] = useState(false);
-  const [filterValue, setFilterValue] = useState("All"); // State for storing the selected filter value
-  const [searchTerm, setSearchTerm] = useState(""); // State for storing the search term
-
+  const [filterValue, setFilterValue] = useState("All");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showModal, setShowModal] = useState(false);
   const storedData = localStorage.getItem("ticketTracker");
   useEffect(() => {
     if (!columns) {
@@ -20,9 +22,12 @@ const Kanban = () => {
         : columnsFromBackend();
       setColumns(parsedData);
     } else {
-      localStorage.setItem("ticketTracker", JSON.stringify(columns));
     }
-  }, [columns, storedData]);
+  }, [columns]);
+
+  useEffect(() => {
+    setHeading(activeProjectList);
+  }, [activeProjectList]);
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -34,7 +39,7 @@ const Kanban = () => {
       const destItems = [...destColumn.items];
       const [removed] = sourceItems.splice(source.index, 1);
       destItems.splice(destination.index, 0, removed);
-      setColumns({
+      const cols = {
         ...columns,
         [source.droppableId]: {
           ...sourceColumn,
@@ -44,20 +49,31 @@ const Kanban = () => {
           ...destColumn,
           items: destItems,
         },
-      });
+      };
+      setColumns(cols);
+      localStorage.setItem("ticketTracker", JSON.stringify(cols));
     } else {
       const column = columns[source.droppableId];
       const copiedItems = [...column.items];
       const [removed] = copiedItems.splice(source.index, 1);
       copiedItems.splice(destination.index, 0, removed);
-      setColumns({
+      const cols = {
         ...columns,
         [source.droppableId]: {
           ...column,
           items: copiedItems,
         },
-      });
+      };
+      setColumns(cols);
+      localStorage.setItem("ticketTracker", JSON.stringify(cols));
     }
+  };
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   const handleFilterChange = (e) => {
@@ -93,8 +109,12 @@ const Kanban = () => {
   return (
     <div className="flex-grow max-w-full">
       <NavBar searchHandler={handleSearch} />
+      {showModal && <ModalForm closeModal={closeModal} />}
       <div className="p-3  md:p-10 bg-[#ffffff]">
-        <DetailsSection />
+        <DetailsSection
+          activeProjectList={heading}
+          handleSaveClick={handleSaveClick}
+        />
         <DragDropContext
           onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
         >
@@ -121,13 +141,18 @@ const Kanban = () => {
                               {
                                 filterTasksByPriority(
                                   filterTasksBySearchTerm(column.items)
-                                ).length
+                                )?.length
                               }
                             </div>
                           </div>
                         </div>
                         {column.title === "To-do" && (
-                          <img src={addIcon} alt="" />
+                          <img
+                            onClick={openModal}
+                            className="cursor-pointer"
+                            src={addIcon}
+                            alt=""
+                          />
                         )}
                       </div>
                       <div

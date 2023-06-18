@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const ProjectList = ({ projectlist, activeList, setActiveList }) => {
+const ProjectList = ({ activeList, setActiveList }) => {
+  const [projectList, setProjectList] = useState([]);
+  const list = localStorage.getItem("projectList");
+  console.log({
+    list,
+    projectList,
+    isequal: list === JSON.stringify(projectList),
+  });
+  useEffect(() => {
+    console.log({
+      len: projectList.length > 0,
+      isequal: list !== JSON.stringify(projectList),
+    });
+
+    setProjectList(JSON.parse(list));
+  }, [activeList]);
+
   return (
     <div className="flex flex-col gap-4 mt-3">
-      {projectlist.map((item) => (
+      {projectList?.map((item) => (
         <div
           onClick={() => setActiveList(item)}
           className={`flex rounded-md px-3 items-center cursor-pointer justify-between ${
