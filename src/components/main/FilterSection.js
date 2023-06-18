@@ -8,7 +8,7 @@ import shrink from "../../images/shrinkView.svg";
 
 const FilterSection = () => {
   return (
-    <div className="flex justify-between items-center mt-10">
+    <div className="flex  flex-col md:flex-row gap-3 justify-between items-center mt-10">
       <div className="flex gap-3">
         <div className="h-10 w-32 border-2 flex gap-3 rounded-md items-center px-3 border-border">
           <img className="h-3" src={filterIcon} alt="" />

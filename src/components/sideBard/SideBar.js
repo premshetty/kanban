@@ -14,15 +14,32 @@ const projectlist = [
 ];
 const SideBar = () => {
   const [activeProjectList, setActiveProjectList] = useState(projectlist[0]);
-
+  const toggleSidebar = () => {
+    const sidebar = document.getElementById("sidebar");
+    const btn = document.getElementById("toggle-btn");
+    if (sidebar.style.display === "none") {
+      sidebar.style.display = "block";
+    } else {
+      sidebar.style.display = "none";
+      btn.style.display = "block";
+    }
+  };
   return (
-    <div className="bg-white w-60 rounded-l-3xl   min-h-screen border-r-2 border-border px-4">
+    <div
+      id="sidebar"
+      className="bg-white w-60 rounded-l-3xl min-w-[240px] hidden lg:block  min-h-screen border-r-2 border-border px-4"
+    >
       <div className="flex items-center justify-between h-20">
         <div className="flex gap-2 items-center">
           <img src={Logo} alt="" />
           <p className="text-heading font-bold font-sans ">Project M.</p>
         </div>
-        <img src={Hideimg} alt="" className="cursor-pointer" />
+        <img
+          src={Hideimg}
+          onClick={toggleSidebar}
+          alt=""
+          className="cursor-pointer"
+        />
       </div>
       <MenuList />
       <hr className=" h-[2px] bg-border  mt-5" />

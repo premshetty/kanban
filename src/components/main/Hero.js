@@ -11,10 +11,10 @@ import Kanban from "./kanban/Kanban";
 
 const Hero = () => {
   return (
-    <div className="p-10 bg-[#ffffff]">
-      <div className="flex justify-between items-center">
-        <div className="flex gap-3 items-center">
-          <h1 className="text-5xl  font-normal">Mobile App</h1>
+    <div className="p-3  md:p-10 bg-[#ffffff]">
+      <div className="flex flex-col md:flex-row gap-3 justify-between items-center">
+        <div className="flex gap-4 items-center">
+          <h1 className="text-2xl md:text-5xl  font-normal">Mobile App</h1>
           <img className="mt-3 cursor-pointer" src={editICon} alt="" />
           <img className="mt-3 cursor-pointer" src={linkICon} alt="" />
         </div>

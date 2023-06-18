@@ -7,9 +7,9 @@ import addIcon from "../../../images/addTicket.svg";
 const Kanban = () => {
   const [columns, setColumns] = useState(false);
 
+  const storedData = localStorage.getItem("ticketTracker");
   useEffect(() => {
     if (!columns) {
-      const storedData = localStorage.getItem("ticketTracker");
       const parsedData = storedData
         ? JSON.parse(storedData)
         : columnsFromBackend();
@@ -17,7 +17,7 @@ const Kanban = () => {
     } else {
       localStorage.setItem("ticketTracker", JSON.stringify(columns));
     }
-  }, [columns]);
+  }, [columns, storedData]);
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -59,12 +59,12 @@ const Kanban = () => {
     <DragDropContext
       onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
     >
-      <div className="grid grid-cols-3 gap-4 mt-10">
+      <div className="flex  gap-4 mt-10 w-full overflow-scroll md:overflow-hidden lg:justify-around">
         {Object.entries(columns).map(([columnId, column], index) => (
           <Droppable key={columnId} droppableId={columnId}>
             {(provided, snapshot) => (
               <div
-                className="min-h-100px flex flex-col bg-gray-200 min-w-341px rounded-lg p-5 "
+                className="min-h-100px max-w-[350px] flex flex-col bg-gray-200 min-w-[341px] rounded-lg p-5 "
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
@@ -77,7 +77,7 @@ const Kanban = () => {
                     <div className="flex gap-2 items-center py-1 px-4 rounded-lg self-start">
                       <p>{column.title}</p>
                       <div className="h-5 w-5 bg-border text-[#625F6D] flex items-center justify-center rounded-full text-xs">
-                        4
+                        {column.items.length}
                       </div>
                     </div>
                   </div>
@@ -85,11 +85,19 @@ const Kanban = () => {
                 </div>
                 <div
                   className="h-[3px] mt-2 w-full"
-                  style={{ backgroundColor: column.color }}
+                  style={{
+                    backgroundColor:
+                      column.title !== "Done" ? column.color : "#8BC48A",
+                  }}
                 ></div>
                 {column.items.map((item, index) => (
                   <div>
-                    <TaskCard key={item} item={item} index={index} />
+                    <TaskCard
+                      key={item}
+                      item={item}
+                      index={index}
+                      columnName={column.title}
+                    />
                   </div>
                 ))}
 
