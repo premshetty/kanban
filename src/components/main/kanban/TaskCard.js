@@ -25,8 +25,9 @@ const TaskCard = ({ item, index, columnName }) => {
               <p className="text-heading font-bold text-lg"> {item.title} </p>
               {item.isShowContentImg ? (
                 <div className="flex gap-2 overflow-scroll md:overflow-hidden max-w-[230px] md:w-auto">
-                  {item.contentImg.map((img) => (
+                  {item.contentImg.map((img, index) => (
                     <img
+                      key={index}
                       className="rounded-md object-cover flex-grow h-[100px]  "
                       src={img}
                       alt=""
@@ -43,6 +44,7 @@ const TaskCard = ({ item, index, columnName }) => {
                 <div className="flex flex-row-reverse relative h-5 max-w-[140px] min-w-[50px]">
                   {item.userImages.map((img, index) => (
                     <img
+                      key={index}
                       className={`absolute cursor-pointer h-5 w-5 top-0 
                     ${
                       index === 0

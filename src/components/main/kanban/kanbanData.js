@@ -10,7 +10,7 @@ export const data = [
     title: "Task 1",
     Task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent.",
     Priority: "Low",
-    Due_Date: "25-May-2020",
+    Due_Date: "20-Jun-2023",
     contentText:
       "Brainstorming brings team members' diverse experience into play.",
     contentImg: [
@@ -25,7 +25,7 @@ export const data = [
     title: "Task 2",
     Task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent.",
     Priority: "Medium",
-    Due_Date: "10-Jun-2021",
+    Due_Date: "21-Jun-2023",
     contentText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     contentImg: ["https://picsum.photos/200/300"],
     userImages: [person2Img, person3Img],
@@ -36,7 +36,7 @@ export const data = [
     title: "Task 3",
     Task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent.",
     Priority: "High",
-    Due_Date: "05-Jul-2022",
+    Due_Date: "22-Jun-2023",
     contentText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     contentImg: [
       "https://picsum.photos/200/300",
@@ -50,7 +50,7 @@ export const data = [
     title: "Task 4",
     Task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent.",
     Priority: "Low",
-    Due_Date: "15-Sep-2023",
+    Due_Date: "23-Jun-2023",
     contentText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     contentImg: [],
     userImages: [person3Img, person4Img],
@@ -61,7 +61,7 @@ export const data = [
     title: "Task 5",
     Task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent.",
     Priority: "Medium",
-    Due_Date: "20-Nov-2024",
+    Due_Date: "24-Jun-2023",
     contentText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     contentImg: [
       "https://picsum.photos/200/300",
@@ -75,7 +75,7 @@ export const data = [
     title: "Task 6",
     Task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent.",
     Priority: "High",
-    Due_Date: "30-Jan-2025",
+    Due_Date: "25-Jun-2023",
     contentText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     contentImg: [
       "https://picsum.photos/200/300",
@@ -89,7 +89,7 @@ export const data = [
     title: "Task 7",
     Task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent.",
     Priority: "Low",
-    Due_Date: "05-Apr-2025",
+    Due_Date: "26-Jun-2023",
     contentText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     contentImg: [
       "https://picsum.photos/200/300",
@@ -103,7 +103,7 @@ export const data = [
     title: "Task 8",
     Task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent.",
     Priority: "Medium",
-    Due_Date: "10-Jun-2025",
+    Due_Date: "27-Jun-2023",
     contentText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     contentImg: [],
     userImages: [person2Img],
@@ -114,7 +114,7 @@ export const data = [
     title: "Task 9",
     Task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent.",
     Priority: "High",
-    Due_Date: "15-Aug-2025",
+    Due_Date: "28-Jun-2023",
     contentText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     contentImg: [
       "https://picsum.photos/200/300",
@@ -128,7 +128,7 @@ export const data = [
     title: "Task 10",
     Task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent.",
     Priority: "Low",
-    Due_Date: "20-Oct-2025",
+    Due_Date: "29-Jun-2023",
     contentText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     contentImg: [
       "https://picsum.photos/200/300",
@@ -140,7 +140,7 @@ export const data = [
 ];
 
 export const columnsFromBackend = () => {
-  const colums = {
+  const columns = {
     [uuidv4()]: {
       title: "To-do",
       items: [...data],
@@ -157,6 +157,6 @@ export const columnsFromBackend = () => {
       color: "#76A5EA",
     },
   };
-  localStorage.setItem("tickets", JSON.stringify(colums));
-  return colums;
+  localStorage.setItem("tickets", JSON.stringify(columns));
+  return columns;
 };

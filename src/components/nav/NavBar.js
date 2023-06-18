@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import SearchBar from "./SearchBar";
+import searchIcon from "../../images/search.svg";
 import calenderIcon from "../../images/calender.svg";
 import messageIcon from "../../images/messagenav.svg";
 import notificationIcon from "../../images/notification.svg";
 import downIcon from "../../images/down.svg";
 import userImg from "../../images/user.png";
 import showImg from "../../images/show.svg";
-const NavBar = () => {
+const NavBar = ({ searchHandler }) => {
   const toggleSidebar = () => {
     const sidebar = document.getElementById("sidebar");
     const btn = document.getElementById("toggle-btn");
@@ -21,7 +21,15 @@ const NavBar = () => {
 
   return (
     <div className="bg-white   flex flex-col-reverse  md:flex-row px-3  md:justify-between md:items-center py-2  md:py-5 md:px-10 md:h-20">
-      <SearchBar />
+      <div className="flex  px-2 h-11 bg-[#f5f5f5] w-auto md:w-96 items-center gap-3">
+        <img src={searchIcon} className="h-5" alt="" />
+        <input
+          onChange={searchHandler}
+          type="text "
+          className="placeholder:text-[#787486] bg-transparent outline-none"
+          placeholder="Search for anything..."
+        />
+      </div>
       <div className="flex flex-row justify-between   md:gap-20 items-center">
         <div className="flex gap-2  md:gap-7">
           {
