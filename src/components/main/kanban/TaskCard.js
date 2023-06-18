@@ -28,7 +28,7 @@ const TaskCard = ({ item, index, columnName }) => {
                   {item.contentImg.map((img, index) => (
                     <img
                       key={index}
-                      className="rounded-md object-cover flex-grow h-[100px]  "
+                      className="rounded-md object-cover flex-grow h-[100px]  min-w-[45%]"
                       src={img}
                       alt=""
                     />

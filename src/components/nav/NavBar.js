@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import searchIcon from "../../images/search.svg";
 import calenderIcon from "../../images/calender.svg";
 import messageIcon from "../../images/messagenav.svg";
@@ -30,17 +30,16 @@ const NavBar = ({ searchHandler }) => {
           placeholder="Search for anything..."
         />
       </div>
-      <div className="flex flex-row justify-between   md:gap-20 items-center">
+      <div className="flex flex-row justify-between  h-14 md:h-auto  md:gap-20 items-center">
         <div className="flex gap-2  md:gap-7">
-          {
-            <img
-              src={showImg}
-              onClick={toggleSidebar}
-              alt=""
-              id="toggle-btn"
-              className="cursor-pointer block md:hidden"
-            />
-          }
+          <img
+            src={showImg}
+            onClick={toggleSidebar}
+            alt=""
+            id="toggle-btn"
+            className="cursor-pointer block md:hidden"
+          />
+
           <img className="h-4 md:h-6" src={calenderIcon} alt="" />
           <img className="h-4 md:h-6" src={messageIcon} alt="" />
           <img className="h-4 md:h-6" src={notificationIcon} alt="" />
