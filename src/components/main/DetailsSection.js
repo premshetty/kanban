@@ -19,6 +19,7 @@ const DetailsSection = ({ activeProjectList, handleSaveClick }) => {
 
   const saveClick = () => {
     handleSaveClick({ prevName: activeProjectList, newName: projectName });
+    setEditMode(false);
   };
   const list = JSON.parse(localStorage.getItem("projectList"));
 

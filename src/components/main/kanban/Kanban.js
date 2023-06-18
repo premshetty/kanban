@@ -105,11 +105,28 @@ const Kanban = ({ activeProjectList, handleSaveClick }) => {
       );
     });
   };
-
+  const submitHandler = (data) => {
+    console.log(data);
+    const list = { ...columns };
+    console.log(list);
+    for (const property in list) {
+      console.log(property);
+      if (list[property].title === "To-do") {
+        list[property].items = [...list[property].items, data];
+      }
+    }
+    setColumns(list);
+    localStorage.setItem("ticketTracker", JSON.stringify(list));
+  };
   return (
     <div className="flex-grow max-w-full">
       <NavBar searchHandler={handleSearch} />
-      {showModal && <ModalForm closeModal={closeModal} />}
+      {showModal && (
+        <ModalForm
+          ticketSubmitHandler={submitHandler}
+          closeModal={closeModal}
+        />
+      )}
       <div className="p-3  md:p-10 bg-[#ffffff]">
         <DetailsSection
           activeProjectList={heading}

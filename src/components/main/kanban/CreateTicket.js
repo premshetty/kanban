@@ -4,7 +4,7 @@ import person2Img from "../../../images/inviteuser2.png";
 import person3Img from "../../../images/inviteuser3.png";
 import person4Img from "../../../images/inviteuser4.png";
 import person1Img from "../../../images/inviteuser1.png";
-function ModalForm({ data, closeModal }) {
+function ModalForm({ data, closeModal, ticketSubmitHandler }) {
   const [Task, setTask] = useState("");
   const [Priority, setPriority] = useState("Low");
   const [Due_Date, setDueDate] = useState("");
@@ -30,10 +30,6 @@ function ModalForm({ data, closeModal }) {
       return res;
     };
     const randomNumbers = randomNumGenareator();
-    const list =
-      JSON.parse(localStorage.getItem("ticketTracker")) ||
-      JSON.parse(localStorage.getItem("tickets"));
-
     const newTodo = {
       id: uuidv4(),
       title: Task,
@@ -48,15 +44,8 @@ function ModalForm({ data, closeModal }) {
       ],
       isShowContentImg,
     };
-    console.log(list);
-    for (const property in list) {
-      console.log(property);
-      if (list[property].title === "To-do") {
-        list[property].items = [...list[property].items, newTodo];
-      }
-    }
-    console.log(list);
-    localStorage.setItem("ticketTracker", JSON.stringify(list));
+    ticketSubmitHandler({ ...newTodo });
+
     closeModal();
   };
 
