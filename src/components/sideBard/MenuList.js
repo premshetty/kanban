@@ -29,7 +29,7 @@ const MenuList = () => {
     },
   ];
   return (
-    <div className="mt-8 flex flex-col gap-6">
+    <div className="mt-12 md:mt-8 flex flex-col gap-6">
       {menuList.map((item) => {
         return (
           <div className="flex gap-4 items-center cursor-pointer group-[list]:">
